@@ -1,9 +1,50 @@
-const form = document.getElementById("contactForm");
+// Botão voltar ao topo
 
-form.addEventListener("submit", function (e) {
-    e.preventDefault();
+const topo = document.getElementById("topo");
 
-    alert("Mensagem enviada com sucesso!");
+topo.addEventListener("click", () => {
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
+});
 
-    form.reset();
+// Formulário
+
+document.getElementById("formContato")
+.addEventListener("submit", function(e){
+
+e.preventDefault();
+
+alert("Mensagem enviada com sucesso!");
+
+});
+
+// Contadores
+
+const counters = document.querySelectorAll(".counter");
+
+counters.forEach(counter => {
+
+const atualizar = () => {
+
+const alvo = +counter.getAttribute("data-target");
+const valor = +counter.innerText;
+
+const incremento = alvo / 100;
+
+if(valor < alvo){
+counter.innerText =
+Math.ceil(valor + incremento);
+
+setTimeout(atualizar,20);
+
+}else{
+counter.innerText = alvo;
+}
+
+};
+
+atualizar();
+
 });
